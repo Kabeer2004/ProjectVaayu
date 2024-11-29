@@ -46,5 +46,5 @@ gdal_rasterize -l Gujarat_Build_Up_Area_Type -burn 1.0 -tr 1.0 1.0 -te 7937898.8
 
 gdal_translate -of GTiff -b 1 -mask 1 -a_nodata 0 -co ALPHA=YES temp_raster.tif raster_with_alpha.tif
 
-gdal_calc -A raster_with_alpha.tif --outfile=final_raster_white.tif --calc="255\*(A>0)" --NoDataValue=0 --type=Byte
+gdal_calc -A raster_with_alpha.tif --outfile=final_raster_white.tif --calc="255*(A>0)" --NoDataValue=0 --type=Byte
 ```
