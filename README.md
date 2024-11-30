@@ -141,3 +141,9 @@ gdal_translate -of GTiff -b 1 -mask 1 -a_nodata 0 -co ALPHA=YES villageA_rasteri
 
 gdal_calc.py -A villageA_with_alpha.tif --outfile=villageA_final.tif --calc="255*(A>0)" --NoDataValue=0 --type=Byte
 ```
+
+## Polygonizing the output mask (large .tif that we get from recombining tiles) to SHP
+
+```cmd
+gdal_polygonize built_up_raster_lalpur.tif -f "ESRI Shapefile" test_builtup_lalpur.shp
+```
