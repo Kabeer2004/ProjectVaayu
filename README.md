@@ -55,6 +55,8 @@ gdal_translate -of GTiff -b 1 -mask 1 -a_nodata 0 -co ALPHA=YES temp_raster.tif 
 gdal_calc -A raster_with_alpha.tif --outfile=final_raster_white.tif --calc="255*(A>0)" --NoDataValue=0 --type=Byte
 ```
 
+Created raster_mask_pipeline.bat for step 2 and 3
+
 ## Multi-Village ECW to Raster and Mask Layer
 
 To handle ECW files with multiple villages and generate rasterized layers for each village separately, you need to:

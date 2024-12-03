@@ -2,10 +2,10 @@
 setlocal enabledelayedexpansion
 
 rem Set the input ECW file path (ensure the quotes are correctly handled)
-set INPUT="D:\Documents\cyber\projects\vaayu\repo\data\Chhattisgarh\Chhattisgarh_2\my_files\amora_raster.tif"
+set INPUT="D:\Documents\cyber\projects\vaayu\repo\data\Chhattisgarh\Chhattisgarh_2\my_files\amora_tin_builtup_final.tif"
 
 rem Set the desired output directory (make sure to change this path if needed)
-set OUT_DIR="D:\Documents\cyber\projects\vaayu\repo\data\Chhattisgarh\Chhattisgarh_2\my_files\raster_tiles"
+set OUT_DIR="D:\Documents\cyber\projects\vaayu\repo\data\Chhattisgarh\Chhattisgarh_2\my_files\amora_tin_builtup_tiles"
 
 rem Set the tile dimensions (in pixels)
 set TILE_WIDTH=3000
@@ -29,7 +29,7 @@ for /L %%r in (0,1,%ROWS%) do (
         set /A Y_OFFSET=%%r*%TILE_HEIGHT%
         
         rem Define the output file name and path for each tile
-        set OUTPUT_FILE="%OUT_DIR%\amirpur_output_tile_%%r_%%c.tif"
+        set OUTPUT_FILE="%OUT_DIR%\amora_output_tile_%%r_%%c.tif"
         
         rem Run gdal_translate with the calculated offsets
         echo Generating tile %%r_%%c...
