@@ -80,15 +80,15 @@ gdal_merge.py -n 0 -o combined_multiclass_raster.tif -a_nodata 0 class_mask_1.ti
 ```
 
 ## Color Table:
-| Features | Color |
-|----------|----------|
-| Roads    | Red   |
-| Water Bodies    | Blue   |
-| RCC Rooftop    | Green   |
-| Tin Rooftop    | Yellow   |
-| Tiled Rooftop    | Magenta   |
-| Other Rooftops    | Brown   |
-
+| Features       | Color  | HTML Color Notation (Hex) | Layer Index |
+|----------------|--------|---------------------------|-------------|
+| Roads          | Red    | #FF0000                   | 1           |
+| Water Bodies   | Blue   | #0000FF                   | 2           |
+| RCC Rooftop    | Green  | #008000                   | 3           |
+| Tin Rooftop    | Yellow | #FFFF00                   | 4           |
+| Tiled Rooftop  | Magenta| #FF00FF                   | 5           |
+| Other Rooftops | Brown  | #A52A2A                   | 6           |
+  
 ## Multi-Village ECW to Raster and Mask Layer
 
 To handle ECW files with multiple villages and generate rasterized layers for each village separately, you need to:
