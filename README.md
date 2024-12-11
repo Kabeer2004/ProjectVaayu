@@ -57,6 +57,28 @@ gdal_calc -A raster_with_alpha.tif --outfile=final_raster_white.tif --calc="255*
 
 Created raster_mask_pipeline.bat for step 2 and 3
 
+## Pipeline to Create MultiClass Files from Binary
+Step 1: Assign Unique Values to Each Binary Mask
+Use gdal_calc.py to multiply each binary mask by a unique value corresponding to the class.
+
+Example:
+
+```
+gdal_calc -A binary_mask_1.tif --outfile=class_mask_1.tif --calc="A*1" --NoDataValue=0 --type=Byte
+gdal_calc -A binary_mask_2.tif --outfile=class_mask_2.tif --calc="A*2" --NoDataValue=0 --type=Byte
+gdal_calc -A binary_mask_3.tif --outfile=class_mask_3.tif --calc="A*3" --NoDataValue=0 --type=Byte
+```
+
+Here, 1, 2, and 3 are unique values representing each class. Replace them with your desired class IDs or color indices.
+
+Step 2: Combine the Individual Class Masks
+Once each mask has a unique value, use gdal_merge.py to combine them into a single raster. Set the -n flag to define the NoData value and ensure proper overwriting behavior for overlapping areas (the last layer in the input list will take precedence).
+
+Example:
+```
+gdal_merge.py -n 0 -o combined_multiclass_raster.tif -a_nodata 0 class_mask_1.tif class_mask_2.tif class_mask_3.tif
+```
+
 ## Multi-Village ECW to Raster and Mask Layer
 
 To handle ECW files with multiple villages and generate rasterized layers for each village separately, you need to:
