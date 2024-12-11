@@ -77,6 +77,8 @@ Once each mask has a unique value, use gdal_merge.py to combine them into a sing
 Example:
 ```
 gdal_merge.py -n 0 -o combined_multiclass_raster.tif -a_nodata 0 class_mask_1.tif class_mask_2.tif class_mask_3.tif
+
+gdaldem color-relief combined_multiclass_raster.tif color_table.txt colored_multiclass_raster.tif
 ```
 
 ## Color Table:
@@ -88,7 +90,7 @@ gdal_merge.py -n 0 -o combined_multiclass_raster.tif -a_nodata 0 class_mask_1.ti
 | Tin Rooftop    | Yellow | #FFFF00                   | 4           |
 | Tiled Rooftop  | Magenta| #FF00FF                   | 5           |
 | Other Rooftops | Brown  | #A52A2A                   | 6           |
-  
+
 ## Multi-Village ECW to Raster and Mask Layer
 
 To handle ECW files with multiple villages and generate rasterized layers for each village separately, you need to:
