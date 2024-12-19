@@ -2,7 +2,7 @@
 
 The official repository for Project Vaayu - SIH Problem Statement 1705. 
 
-The problem statement (put forward by the Ministry of Panchayati Raj, Government of India) required us to train and optimize an ML model capable of performing feature extraction and identification from drone orthophotos. This was a challenging PS and even though we didn't win at the National Grand Final, Team Vaayu has decided to open-source our code from the competition as well as a rectified and finished final version of the project that includes a better implementation of the solution. This repo will also serve as a record of the work we performed, the techniques we followed, models we compared and the final results we got.
+The problem statement (put forward by the Ministry of Panchayati Raj, Government of India) required us to train and optimize an ML model capable of performing feature extraction and identification from drone orthophotos. This was a challenging PS and even though we didn't win at the National Grand Final, Team Vaayu has decided to open-source our code from the competition as well as a [rectified and finished final version of the project that includes a better implementation of the solution](https://github.com/Kabeer2004/ProjectVaayu/tree/main#aaand-finally-the-winner-is). This repo will also serve as a record of the work we performed, the techniques we followed, models we compared and the final results we got.
 
 ## Background
 
@@ -184,6 +184,13 @@ Here are the results for UNet++:
 #### UNet++ for Buildings:
 
 ![image](https://github.com/user-attachments/assets/9e624bbd-1f3b-485d-a3e2-f25f0bd06466)
+
+We can also compare the results of UNet++ with Detectron2. Check the [Detectron2 results here.](https://github.com/Kabeer2004/ProjectVaayu/tree/main?tab=readme-ov-file#results-for-buildings)
+
+And this is the output from our UNet++ model for the same tile:
+
+![image](https://github.com/user-attachments/assets/92d70cd8-1b66-48e7-b9ab-254f1c4c6ec9)
+
 
 #### UNet++ for Roads:
 
