@@ -2,7 +2,7 @@
 
 The official repository for Project Vaayu - SIH Problem Statement 1705. 
 
-The problem statement (put forward by the Ministry of Panchayati Raj, Government of India) required us to train and optimize an ML model capable of performing feature extraction and identification from drone orthophotos. This was a challenging PS and even though we didn't win at the National Grand Final, Team Vaayu has decided to open-source our code from the competition as well as a rectified and finished final version of the project that includes a better implementation of the solution. This repo will also serve as a record of the work we performed, the techniques we followed, models we compared and the final results we got.
+The problem statement (put forward by the Ministry of Panchayati Raj, Government of India) required us to train and optimize an ML model capable of performing feature extraction and identification from drone orthophotos. This was a challenging PS and even though we didn't win at the National Grand Final, Team Vaayu has decided to open-source our code from the competition as well as a [rectified and finished final version of the project that includes a better implementation of the solution](https://github.com/Kabeer2004/ProjectVaayu/tree/main#aaand-finally-the-winner-is). This repo will also serve as a record of the work we performed, the techniques we followed, models we compared and the final results we got.
 
 ## Background
 
