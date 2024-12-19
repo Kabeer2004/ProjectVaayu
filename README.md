@@ -26,6 +26,7 @@ iii. **Optimize the model for efficient processing and deployment.**
 1. [sample_data](https://github.com/Kabeer2004/ProjectVaayu/tree/main/sample_data) contains sample data from the dataset provided to us.
 2. [legacy_code](https://github.com/Kabeer2004/ProjectVaayu/tree/main/legacy_code) contains our training notebooks from the competition. This code is undocumented, uncommented and may contain errors.
 3. [gdal_scripts](https://github.com/Kabeer2004/ProjectVaayu/tree/main/gdal_scripts) contains batch scripts that can perform various actions using GDAL. These scripts are used at various points of the training data creation and inference pipelines. You may run these batch scripts in the OSGeo4W Shell on Windows which comes packaged with QGIS.
+4. [models](https://github.com/Kabeer2004/ProjectVaayu/tree/main/models) contains the weights for the UNet++ models we trained in [this notebook.](https://github.com/Kabeer2004/ProjectVaayu/blob/main/VaayuUnetPPTraining_Notebook.ipynb)
 
 ## The Data
 
@@ -171,12 +172,51 @@ We decided to try fine-tuning an FPN model.
 #### Verdict:
 FPNs only performed well for roads. When it came to water bodies, due to the lack of training data, it was not able to learn enough from the data. For buildings, it seemed to face the same problem that Detectron2 faced - it was generating very blotchy outputs. This was a general problem we faced with all of our segmentation models and architectures that we tried. Even UNet, the architecture that ended up winning the competition, showed the same issues in our early testing.
 
+## Aaand finally, the winner is....
+UNet++. It was always UNet! Seeing UNet get the best performance on this task and also seeing it win the entire competition was like a back-to-basics moment for me. Sometimes, the simplest solution is the correct solution. 
+
+UNet++ (U-Net with Nested Skip Pathways) is an advanced architecture for image segmentation tasks, primarily used in medical imaging and computer vision. It builds upon the original U-Net model by enhancing its skip connections through nested pathways. This structure allows the network to capture more fine-grained features at various resolutions, improving segmentation accuracy. The key innovation of UNet++ is the introduction of dense skip pathways and deep supervision, which helps refine the features learned at different levels and improves the overall performance of the model. This makes UNet++ particularly effective for complex segmentation tasks where precise details are critical.
+
+![image](https://github.com/user-attachments/assets/6982d9c7-ae43-425b-8245-b17821512ba8)
+
+Here are the results for UNet++:
+
+#### UNet++ for Buildings:
+
+![image](https://github.com/user-attachments/assets/9e624bbd-1f3b-485d-a3e2-f25f0bd06466)
+
+#### UNet++ for Roads:
+
+![image](https://github.com/user-attachments/assets/4aeb6423-70ac-4f83-9a99-e82906aa3f16)
+
+#### UNet++ for Water Bodies:
+
+![image](https://github.com/user-attachments/assets/038cc9ec-4c6c-4db8-90c3-bc5ca45968d7)
+
+Accuracy for the water body model is much lower due to a lack of training data. Also, the water bodies that were present in the training data were covered with algae - leading to the model confusing it for grass. The Detectron2 model we trained for water body segmentation seemed to perform much better for this task. Check it out [here](https://github.com/Kabeer2004/ProjectVaayu/tree/main#results-for-water-bodies).
+
 ## The Solution
-We prepared a pipeline that used FPNs for roads and buildings and Detectron2 for water bodies. FPN for roads and Detectron2 for water bodies showed great results but the performance for FPN for buildings was not acceptable - before we could try anything else for buildings, our time at the hackathon ran out. However, the updated version of the solution will solve the issue with buildings.
+At the competition, we prepared a pipeline that used FPNs for roads and buildings and Detectron2 for water bodies. FPN for roads and Detectron2 for water bodies showed great results but the performance for FPN for buildings was not acceptable - before we could try anything else for buildings, our time at the hackathon ran out. However, the updated version of the solution will solve the issue with buildings.
 
 Our final inference pipeline looked like this: 
 
 ![IMG-20241216-WA0005 1](https://github.com/user-attachments/assets/4e5c0f7c-617a-49cd-a22e-fce2c2def0a5)
+
+Steps in the pipeline:
+
+1. The user uploads an ECW file.
+2. The ECW file is converted to a large TIF file using GDAL Translate.
+3. The large TIF file is converted to a grid of smaller tiles - each 3000x3000 pixels. This is done using the any_to_tif_grid.bat script.
+4. Each tile is passed through different models. Specifically, each image is passed through one instance of each of the following models - the road segmentation model, the water body segmentation model, the rooftop type segmentation model (one model each for RCC, Tiled, Tin and Other rooftops).
+5. Each inference will produce one output tile - which is saved in a corresponding output folder for each feature.
+6. All the output tiles are then recombined into one large raster file using GDAL Warp.
+7. The raster file is then converted to a ShapeFile using GDAL Polygonize.
+
+One issue here is that when the input tiles pass through the model, the output TIF tiles do not contain their Geographical Information anymore - i.e. they go from GeoTiffs to normal TIF files. Due to this, they do not get polygonized by GDAL Polygonize. To solve this, we can re-apply the geographical information present in the input tiles to the output tiles - since they correspond with each other 1:1 and thus, have the same geographical information. You can use the following gdalwarp command to copy the geo-referencing information from the GeoTIFF tile to the normal TIFF output mask tile: (you will have to run this command for each tile - I suggest creating a batch script)
+
+```
+gdalwarp -s_srs EPSG:4326 -t_srs EPSG:4326 -of GTiff -co "TILED=YES" -co "COMPRESS=LZW" input_normal.tif input_georeferenced.tif
+```
 
 GDAL Warp is used to merge the generated output TIF grid back to one large TIF file as follows:
 
