@@ -179,6 +179,8 @@ UNet++ (U-Net with Nested Skip Pathways) is an advanced architecture for image s
 
 ![image](https://github.com/user-attachments/assets/6982d9c7-ae43-425b-8245-b17821512ba8)
 
+Check the UNet++ Training Notebook for Project Vaayu [here.](https://github.com/Kabeer2004/ProjectVaayu/blob/main/VaayuUnetPPTraining_Notebook.ipynb)
+
 Here are the results for UNet++:
 
 #### UNet++ for Buildings:
@@ -202,7 +204,10 @@ And this is the output from our UNet++ model for the same tile:
 
 Accuracy for the water body model is much lower due to a lack of training data. Also, the water bodies that were present in the training data were covered with algae - leading to the model confusing it for grass. The Detectron2 model we trained for water body segmentation seemed to perform much better for this task. Check it out [here](https://github.com/Kabeer2004/ProjectVaayu/tree/main#results-for-water-bodies).
 
-## The Solution
+## Extras
+The problem statement also required us to train a model that can classify rooftop types into RCC, Tin, Tiled and Other rooftops. You can check the last section of the [UNet++ Training Notebook](https://github.com/Kabeer2004/ProjectVaayu/tree/main#results-for-water-bodies) to see how we implemented this. TL;DR, we took the weights of the base UNet++ model that we trained for building segmentation from images and we re-trained it to segment out different rooftop types. The notebook includes sample code for RCC rooftops but the same code can be reused to train for Tin, Tiled and Other rooftops.
+
+## The Solution (Inference Pipeline)
 At the competition, we prepared a pipeline that used FPNs for roads and buildings and Detectron2 for water bodies. FPN for roads and Detectron2 for water bodies showed great results but the performance for FPN for buildings was not acceptable - before we could try anything else for buildings, our time at the hackathon ran out. However, the updated version of the solution will solve the issue with buildings.
 
 Our final inference pipeline looked like this: 
