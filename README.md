@@ -243,3 +243,121 @@ gdal_polygonize built_up_raster_lalpur.tif -f "ESRI Shapefile" test_builtup_lalp
 ```
 
 The solution also expected us to design a deployment pipeline for the AI model that we created using AWS, ReST APIs and a microservices architecture.
+
+## Team
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<table>
+  <tr>
+     <td align="center">
+       <a href="https://github.com/kabeer2004">
+         <img src="https://avatars.githubusercontent.com/u/59280736?v=4" width="100px;" alt=""/>
+         <br />
+         <sub>
+           <b>
+             Kabeer2004
+           </b>
+         </sub>
+       </a>
+       <br />
+       <a title="Code & Team Leader">
+         💻👨‍💼
+       </a>
+     </td>  
+     <td align="center">
+       <a href="https://github.com/varaddeshpande15">
+         <img src="https://avatars.githubusercontent.com/u/111638914?v=4" width="100px;" alt=""/>
+         <br />
+         <sub>
+           <b>
+             varaddeshpande15
+           </b>
+         </sub>
+       </a>
+       <br />
+       <a title="Code">
+         💻
+       </a>
+     </td>  
+      <td align="center">
+       <a href="https://github.com/itsskofficial">
+         <img src="https://avatars.githubusercontent.com/u/65887545?v=4" width="100px;" alt=""/>
+         <br />
+         <sub>
+           <b>
+             itsskofficial
+           </b>
+         </sub>
+       </a>
+       <br />
+       <a title="Code">
+         💻
+       </a>
+     </td> 
+      <td align="center">
+       <a href="https://github.com/Shubham-Badhe-14">
+         <img src="https://avatars.githubusercontent.com/u/153096382?v=4" width="100px;" alt=""/>
+         <br />
+         <sub>
+           <b>
+             Shubham-Badhe-14
+           </b>
+         </sub>
+       </a>
+       <br />
+       <a title="Code">
+         💻
+       </a>
+     </td>
+     <td align="center">
+       <a href="https://github.com/ishitak12">
+         <img src="https://avatars.githubusercontent.com/u/153096382?v=4" width="100px;" alt=""/>
+         <br />
+         <sub>
+           <b>
+             ishitak12
+           </b>
+         </sub>
+       </a>
+       <br />
+       <a title="Code">
+         💻
+       </a>
+     </td>
+     <td align="center">
+       <a href="https://github.com/sakshiipatil22">
+         <img src="https://avatars.githubusercontent.com/u/153096382?v=4" width="100px;" alt=""/>
+         <br />
+         <sub>
+           <b>
+             sakshiipatil22
+           </b>
+         </sub>
+       </a>
+       <br />
+       <a title="Code">
+         💻
+       </a>
+     </td>
+     <td align="center">
+       <a href="https://github.com/Parth-D3">
+         <img src="https://avatars.githubusercontent.com/u/153096382?v=4" width="100px;" alt=""/>
+         <br />
+         <sub>
+           <b>
+             Parth-D3
+           </b>
+         </sub>
+       </a>
+       <br />
+       <a title="Code">
+         💻
+       </a>
+     </td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
